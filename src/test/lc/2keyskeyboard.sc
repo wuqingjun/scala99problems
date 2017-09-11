@@ -13,4 +13,17 @@
     res
   }
 
+
+  def minStpesDP(n: Int) : Int = {
+    var DP: Array[Int] = new Array[Int](n)
+    for(a <- 0 to n){
+      DP(a) = Int.MaxValue
+    }
+    def rec(s: Int, total: Int, copy: Int): Unit = {
+
+    }
+
+    0
+  }
+
   minSteps(3)
