@@ -1,0 +1,1 @@
+val greeting: Option[String] = Some("Hello world")
