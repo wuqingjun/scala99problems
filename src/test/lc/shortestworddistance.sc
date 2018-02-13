@@ -13,3 +13,18 @@ def wordDistance(words: List[String], word1: String, word2: String) : Int = {
   res
 }
 
+val jobName = "testJobName"
+
+val query = s"""{ "query": { "bool": { "must": { "match": {"jobName": "${jobName}"} } } }, "sort": [{"timestamp": {"order": "desc"}}] } """
+query
+
+case class OffsetRange(topic: String, partition: Int, fromOffset: Long)
+
+val arr = Array(OffsetRange("Patient", 0, 112), OffsetRange("Patient", 1, 131), OffsetRange("Condition", 0, 321))
+
+arr.groupBy(a => a.topic).map(a =>  Map("id" -> (a._1 + "_")))
+
+
+val topicList = List("Patient", "Condition")
+val topicsString = topicList.map(t => "\"" + jobName + "_" + t + "\"").mkString(",")
+val query2 = """{ "size": 1,  "query": { "terms": { "_id" : [""" + topicsString + """] }}, "sort": [{"timestamp": {"order": "desc"}}] } """
